@@ -30,6 +30,8 @@ namespace Core.Repository
     {
         return _context.Set<T>().Count();
     }
+
+
     public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
     {
         IQueryable<T> query = _context.Set<T>();

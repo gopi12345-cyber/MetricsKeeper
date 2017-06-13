@@ -20,7 +20,8 @@ namespace Core.Controllers
         [HttpGet]
         public IEnumerable<Org> Get()
         {
-            return _OrgRepo.GetAll();
+            //return _OrgRepo.GetAll();
+            return _OrgRepo.AllIncluding(a =>a.Portfolios);
         }
 
         [HttpPost]
@@ -28,12 +29,8 @@ namespace Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                    _OrgRepo.Add(org);
-                    _OrgRepo.Commit();
-
-
-
+                _OrgRepo.Add(org);
+                _OrgRepo.Commit();
                 return new OkObjectResult(org);
             }
             else
@@ -42,5 +39,36 @@ namespace Core.Controllers
             }
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody] Org org){
+            if (ModelState.IsValid){
+                _OrgRepo.Update(org);
+                _OrgRepo.Commit();
+                return new OkObjectResult(org);
+            }
+            else{
+                return BadRequest(ModelState);
+            }
+
+        }
+
+        [HttpGet("{id}")]
+        public Org Get(int id){
+            return _OrgRepo.GetSingle(id);
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id){
+            Org _ItemToDeleted = _OrgRepo.GetSingle(id);
+            if (_ItemToDeleted == null){
+                return NotFound();
+            }
+            else{
+                _OrgRepo.Delete(_ItemToDeleted);
+                _OrgRepo.Commit();
+                return new OkResult();
+            }
+        }
     }
 }

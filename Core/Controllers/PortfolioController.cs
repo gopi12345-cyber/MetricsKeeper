@@ -21,6 +21,7 @@ namespace Core.Controllers
         [HttpGet]
         public IEnumerable<Portfolio> GetAll(){
             return _PortfolioRepo.AllIncluding(a=>a.Organization);
+            //return _PortfolioRepo.GetAll();
         }
 
         [HttpPost]

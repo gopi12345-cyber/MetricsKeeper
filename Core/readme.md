@@ -13,3 +13,30 @@ Getting started with this thing:
  - run migrations: dotnet ef database update
 
  This should get you running.
+
+ API facade:
+
+ General pattern is very simple:
+
+  - use Content-Type: application/json
+  - use content in raw json in body of request
+
+ HTTP{GET, POST, PUT, DELETE} /api/{entity}:
+
+ GET /api/org - will list all orgs
+ GET /api/org/1 - will give details on org with id=1
+ PUT /api/org - will update the org based on its id (in body)
+ POST /api/org - will create a new org
+ delete /api/org/1 - will delete the org with id=1
+
+ API available:
+
+ - /api/org
+ - /api/portfolio
+ - /api/project
+
+ API specific extensions:
+
+ - TBD GET /api/entity/?expand=true - will expand the entity to include its lazy-loaded children
+ - TBD GET /api/entity/?withdeleted=true - will return all data, including deleted/not active
+ - TBD GET /api/entity?page=n - will return a page

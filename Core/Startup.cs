@@ -34,7 +34,8 @@ namespace Core
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<CoreContext>(options => options.UseMySql(Configuration["Data:DBConnectionString"]));
             services.AddScoped<IOrgRepository, OrgRepository>();
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();

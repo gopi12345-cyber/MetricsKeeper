@@ -11,6 +11,7 @@ namespace Core.Context
 		public DbSet<Org> Orgs { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
 		public DbSet<Project> Projects { get; set; }
+        public DbSet<Metric> Metrics { get; set; }
 
 		public CoreContext(DbContextOptions options) : base(options) { }
 

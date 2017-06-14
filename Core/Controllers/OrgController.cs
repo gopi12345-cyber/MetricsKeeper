@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Core.Data;
 using Core.Repository;
+using Newtonsoft.Json.Serialization;
 
 namespace Core.Controllers
 {
@@ -18,10 +19,15 @@ namespace Core.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Org> Get()
+        public IEnumerable<Org> Get([FromQuery]bool expand = false)
         {
-            //return _OrgRepo.GetAll();
-            return _OrgRepo.AllIncluding(a =>a.Portfolios);
+            if (expand == true)
+            {
+                return _OrgRepo.AllIncluding(a => a.Portfolios);
+            }
+            else{
+                return _OrgRepo.GetAll();
+            }
         }
 
         [HttpPost]
@@ -41,7 +47,10 @@ namespace Core.Controllers
 
         [HttpPut]
         public IActionResult Update([FromBody] Org org){
-            if (ModelState.IsValid){
+            if (_OrgRepo.GetSingle(org.Id) == null){
+                return NotFound();
+            }
+            else if (ModelState.IsValid){
                 _OrgRepo.Update(org);
                 _OrgRepo.Commit();
                 return new OkObjectResult(org);
@@ -53,10 +62,15 @@ namespace Core.Controllers
         }
 
         [HttpGet("{id}")]
-        public Org Get(int id){
-            return _OrgRepo.GetSingle(id);
+        public IActionResult Get(int id){
+            Org item = _OrgRepo.GetSingle(x=>x.Id == id, a => a.Portfolios);
+            if (item == null){
+                return NotFound();
+            }
+            else{
+                return new ObjectResult(item);
+            }
         }
-
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id){

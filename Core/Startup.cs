@@ -39,6 +39,8 @@ namespace Core
             services.AddDbContext<CoreContext>(options => options.UseMySql(Configuration["Data:DBConnectionString"]));
             services.AddScoped<IOrgRepository, OrgRepository>();
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IMetricRepository, MetricRepository>();
 
         }
 

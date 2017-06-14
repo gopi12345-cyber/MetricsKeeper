@@ -19,9 +19,13 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Portfolio> GetAll(){
-            return _PortfolioRepo.AllIncluding(a=>a.Organization);
-            //return _PortfolioRepo.GetAll();
+        public IEnumerable<Portfolio> GetAll([FromQuery]bool expand = false){
+            if (expand == true){
+                return _PortfolioRepo.AllIncluding(a => a.Projects);
+            }
+            else{
+                return _PortfolioRepo.GetAll();
+            }
         }
 
         [HttpPost]
@@ -36,6 +40,33 @@ namespace Core.Controllers
             }
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody]Portfolio item){
+            if (_PortfolioRepo.GetSingle(item.Id) == null){
+                return NotFound();
+            }
+            else if (ModelState.IsValid){
+                _PortfolioRepo.Update(item);
+                _PortfolioRepo.Commit();
+                return new OkObjectResult(item);
+            }
+            else{
+                return BadRequest(ModelState);
+            }            
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id){
+            var item = _PortfolioRepo.GetSingle(id);
+            if (item == null){
+                return NotFound();
+            }
+            else{
+                _PortfolioRepo.Delete(item);
+                _PortfolioRepo.Commit();
+                return new OkResult();
+            }
+        }
 
     }
 }

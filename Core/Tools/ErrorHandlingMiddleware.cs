@@ -42,9 +42,9 @@ namespace Core.Tools
 
 			var result = JsonConvert.SerializeObject(new { error = exception.Message });
 			context.Response.ContentType = "application/json";
-            //todo: sometimes the StatuCode will be read-only and throw an Exception - need to fix it
+            //todo: sometimes the StatuCode will be read-only and throw an Exception - need to fix it (check for context.HasStarted)
 			context.Response.StatusCode = (int)code;
-			return context.Response.WriteAsync(result);
+            return context.Response.WriteAsync(result);
 		}
 	}
 }

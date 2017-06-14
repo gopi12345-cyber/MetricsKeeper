@@ -4,7 +4,8 @@ https://chsakell.com/2016/06/23/rest-apis-using-asp-net-core-and-entity-framewor
 Dependencies:
 
  - MySQL
- - Nuget packages are all self-explanatory
+ - Redis (not yet, but be prepared - all metrics data will Sit in Redis)
+ - Nuget packages are all self-explanatory and should pull when you open the solution
 
 Getting started with this thing:
 
@@ -14,6 +15,17 @@ Getting started with this thing:
 
  This should get you running.
 
+ Roadmap:
+
+  - Convert EntityBaseRepository methods to be async
+  - Implement options to opt-in for specific fields while Include() (and potentially other methods)
+  - Store metrics in Redis
+  - Change objects retrieval returns from IEnumerable to IQueryable
+  - Paging for large lists
+  - Nested paging
+  - Authentication and Org-based Authorization
+  - Generate documentation with Swagger https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger
+
  API facade:
 
  General pattern is very simple:
@@ -21,7 +33,7 @@ Getting started with this thing:
   - use Content-Type: application/json
   - use content in raw json in body of request
 
- HTTP{GET, POST, PUT, DELETE} /api/{entity}:
+ HTTP {GET, POST, PUT, DELETE} /api/{entity}:
 
  GET /api/org - will list all orgs
  GET /api/org/1 - will give details on org with id=1
@@ -40,3 +52,9 @@ Getting started with this thing:
  - TBD GET /api/entity/?expand=true - will expand the entity to include its lazy-loaded children
  - TBD GET /api/entity/?withdeleted=true - will return all data, including deleted/not active
  - TBD GET /api/entity?page=n - will return a page
+
+
+ Metric regex
+
+ SQALE Literal: /^[A-D]{1}$/i
+

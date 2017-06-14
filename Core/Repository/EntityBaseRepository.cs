@@ -13,7 +13,7 @@ namespace Core.Repository
         where T : class, IEntityBase, new()
 {
  
-    private CoreContext _context;
+    protected CoreContext _context;
  
     
     public EntityBaseRepository(CoreContext context)
@@ -25,6 +25,7 @@ namespace Core.Repository
     {
         return _context.Set<T>().AsEnumerable();
     }
+
  
     public virtual int Count()
     {
@@ -37,7 +38,7 @@ namespace Core.Repository
         IQueryable<T> query = _context.Set<T>();
         foreach (var includeProperty in includeProperties)
         {
-            query = query.Include(includeProperty);
+                query = query.Include(includeProperty);
         }
         return query.AsEnumerable();
     }

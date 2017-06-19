@@ -26,7 +26,7 @@ It is at early stages of development, I encourage you to contribute if you are i
 - AspNet.Core, Web API
 - EntityFrameworkCore
 - MySQL
-- Redis
+- InfluxDB (metrics storage backend)
 
 # Roadmap for WebApi:
 

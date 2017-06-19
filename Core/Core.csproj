@@ -23,6 +23,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
     <PackageReference Include="StackExchange.Redis" Version="1.2.3" />
+    <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+    <PackageReference Include="InfluxDB.Net.Core" Version="1.1.22-beta" />
+    <PackageReference Include="AdysTech.InfluxDB.Client.Net.Core" Version="0.6.1" />
   </ItemGroup>
 <ItemGroup>
 <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />

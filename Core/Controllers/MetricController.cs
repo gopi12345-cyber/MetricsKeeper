@@ -25,6 +25,12 @@ namespace Core.Controllers
             return _MetricRepo.GetAll();
         }
 
+        [Route("types")]
+        [HttpGet]
+        public string GetTypes(){
+            return "All sort of types, yo";
+        }
+
 
         [HttpPost]
         public IActionResult Post([FromBody]Metric item)

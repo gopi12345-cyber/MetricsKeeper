@@ -19,7 +19,7 @@ and in response to my failed search to find I tool that will serve my needs full
 
 # Status and Contributions
 
-It is at early stages of development, I encourage you to contribute if you are interested! Feel free to reach out to talk about the specific area that would benefit most from your contribution at this point.
+It is at early stages of development, I encourage you to contribute if you are interested! At this point, any work in the web ui space would be very much appreciated.
 
 # Technologies:
 
@@ -37,4 +37,3 @@ It is at early stages of development, I encourage you to contribute if you are i
  - (Core) Paging for large lists & Nested paging
  - Authentication and Org-based Authorization
  - Generate documentation with Swagger https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger
-

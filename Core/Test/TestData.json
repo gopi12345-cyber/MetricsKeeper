@@ -1,0 +1,45 @@
+﻿{
+  "Orgs": [
+    {
+      "Name": "Luxoft",
+      "Portfolios": [
+        {
+          "Name": "Capital Markets",
+          "Projects": [
+            { "Name": "ACE" },
+            { "Name": "Fixed Income" },
+            { "Name": "Fix Market Connector" }
+          ]
+        },
+        {
+          "Name": "Advisory",
+          "Projects": [
+            { "Name": "Portfolio Management Reporting" },
+            { "Name": "Wealth Management Framework" },
+            { "Name": "AIFT" }
+          ]
+        },
+        {
+          "Name": "Lab",
+          "Projects": [
+            { "Name": "!@#$%^&*()_++++++++++" },
+            { "Name": "Какое-то странное имя, это капец" },
+            { "Name": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Clevereer",
+      "Portfolios": [
+        {
+          "Name": "Prospects",
+          "Projects": [
+            { "Name": "AI Assisted Surveillance" },
+            { "Name": "Metrics Keeper" }
+          ]
+        }
+      ]
+    }
+  ]
+}

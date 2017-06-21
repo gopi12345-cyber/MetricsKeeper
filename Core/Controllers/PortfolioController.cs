@@ -28,6 +28,11 @@ namespace Core.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public Portfolio GetSingle(int id){
+            return _PortfolioRepo.GetSingle(i => i.Id == id, a => a.Projects);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]Portfolio item){
             if (ModelState.IsValid){

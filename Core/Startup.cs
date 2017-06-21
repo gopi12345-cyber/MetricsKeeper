@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Core.Repository;
 using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
+using Core.Test;
 
 namespace Core
 {
@@ -36,11 +37,12 @@ namespace Core
             // Add framework services.
             services.AddMvc()
                     .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddDbContext<CoreContext>(options => options.UseMySql(Configuration["Data:DBConnectionString"]));
+            services.AddDbContext<CoreContext>(options => options.UseMySql(Configuration["Data:MySQLDBConnectionString"]));
             services.AddScoped<IOrgRepository, OrgRepository>();
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IMetricRepository, MetricRepository>();
+            services.AddSingleton<IConfiguration>(Configuration);
 
         }
 
@@ -51,6 +53,7 @@ namespace Core
             loggerFactory.AddDebug();
             app.UseMiddleware<Core.Tools.ErrorHandlingMiddleware>();
             app.UseMvc();
+
 
         }
     }

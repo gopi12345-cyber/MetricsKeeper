@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Core.Test;
 
 namespace Core
 {
@@ -19,7 +20,14 @@ namespace Core
                 .UseStartup<Startup>()
                 .Build();
 
+			//populate database
+			//DataLoader loader = new DataLoader();
+			//loader.LoadData();
+			
+
             host.Run();
+
+
         }
     }
 }

@@ -28,7 +28,12 @@
 <ItemGroup>
 <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
 </ItemGroup>
+
 <ItemGroup>
-  <Compile Remove="Context\DataContext.cs" />
+  <None Update="Test\TestData.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+ 
 </ItemGroup>
+	
 </Project>

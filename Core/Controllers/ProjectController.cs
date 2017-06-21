@@ -26,6 +26,11 @@ namespace Core.Controllers
             return _ProjectRepo.GetAll();
         }
 
+        [HttpGet("{id}")]
+        public Project GetSingle(int id){
+            return _ProjectRepo.GetSingle(x=>x.Id == id);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]Project project){
             if (ModelState.IsValid){

@@ -31,5 +31,23 @@ namespace Core.Controllers
             var result = await _client.PostPointAsync("mkk", point);
             return new ObjectResult(result);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitReport([FromBody]Dictionary<int,string> data){
+            List<InfluxDatapoint<InfluxValueField>> points = new List<InfluxDatapoint<InfluxValueField>>();
+
+            foreach (KeyValuePair<int,string> item in data){
+                InfluxDatapoint<InfluxValueField> point = new InfluxDatapoint<InfluxValueField>();
+                point.MeasurementName = "metric";
+                point.UtcTimestamp = DateTime.UtcNow;
+                point.Precision = TimePrecision.Seconds;
+                point.Fields.Add("metric_id", new InfluxValueField(item.Key));
+                point.Fields.Add("value", new InfluxValueField(item.Value));
+                points.Append(point);
+            }
+            var result = await _client.PostPointsAsync("mkk", points);
+            return new ObjectResult(result);
+        }
     }
 }

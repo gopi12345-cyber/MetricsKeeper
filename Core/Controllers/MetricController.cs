@@ -20,9 +20,9 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Metric> Get()
+        public async Task<IEnumerable<Metric>> Get()
         {
-            return _MetricRepo.GetAll();
+            return await _MetricRepo.GetAll();
         }
 
         [Route("types")]

@@ -5,6 +5,7 @@ using Core.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Core.Repository
 {
@@ -13,9 +14,9 @@ namespace Core.Repository
     //todo: replace voids with Task<IActionResult>
     //todo: replace sync with async methods
 		{
-			IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
-			IEnumerable<T> GetAll();
-			int Count();
+			Task<IEnumerable<T>> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
+			Task<IEnumerable<T>> GetAll();
+			Task<int> Count();
 			T GetSingle(int id);
 			T GetSingle(Expression<Func<T, bool>> predicate);
 			T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);

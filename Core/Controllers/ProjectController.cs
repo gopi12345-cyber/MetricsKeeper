@@ -21,9 +21,9 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Project> GetAll()
+        public async Task<IEnumerable<Project>> GetAll()
         {
-            return _ProjectRepo.GetAll();
+            return await _ProjectRepo.GetAll();
         }
 
         [HttpGet("{id}")]

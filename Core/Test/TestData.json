@@ -1,22 +1,22 @@
 ﻿{
   "Orgs": [
     {
-      "Name": "Luxoft",
+      "Name": "StrongSoft",
       "Portfolios": [
         {
-          "Name": "Capital Markets",
+          "Name": "Financial",
           "Projects": [
-            { "Name": "ACE" },
+            { "Name": "Derivatives Trading" },
             { "Name": "Fixed Income" },
             { "Name": "Fix Market Connector" }
           ]
         },
         {
-          "Name": "Advisory",
+          "Name": "Machinery",
           "Projects": [
-            { "Name": "Portfolio Management Reporting" },
-            { "Name": "Wealth Management Framework" },
-            { "Name": "AIFT" }
+            { "Name": "Hard Metal Stuff" },
+            { "Name": "Health Management Framework" },
+            { "Name": "Look and Poock" }
           ]
         },
         {

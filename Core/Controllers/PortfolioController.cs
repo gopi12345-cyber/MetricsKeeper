@@ -19,12 +19,14 @@ namespace Core.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Portfolio> GetAll([FromQuery]bool expand = false){
+        public async Task<IEnumerable<Portfolio>> GetAll([FromQuery]bool expand = false){
             if (expand == true){
-                return _PortfolioRepo.AllIncluding(a => a.Projects);
+                return await _PortfolioRepo.AllIncluding(a => a.Projects);
+
+
             }
             else{
-                return _PortfolioRepo.GetAll();
+                return await _PortfolioRepo.GetAll();
             }
         }
 

@@ -24,13 +24,15 @@ namespace Core.Test
 
         }
 
-        public void WipeDBRecords(){
-            //not implemented
+        private void WipeDBRecords(){
+            _cont.Database.ExecuteSqlCommand("DELETE FROM PROJECT");
+            _cont.Database.ExecuteSqlCommand("DELETE FROM PORTFOLIO");
+            _cont.Database.ExecuteSqlCommand("DELETE FROM ORG");
         }
 
         public void LoadData()
         {
-            JObject json = JObject.Parse(File.ReadAllText(AppContext.BaseDirectory+"/TestData.json"));
+            JObject json = JObject.Parse(File.ReadAllText(AppContext.BaseDirectory+"/Test/TestData.json"));
             foreach(JToken OToken in json["Orgs"].Children()){
                 Org o = OToken.ToObject<Org>();
                 _cont.Orgs.Add(o);

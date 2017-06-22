@@ -13,6 +13,7 @@ namespace Core
     {
         public static void Main(string[] args)
         {
+            
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
@@ -20,9 +21,11 @@ namespace Core
                 .UseStartup<Startup>()
                 .Build();
 
-			//populate database
-			//DataLoader loader = new DataLoader();
-			//loader.LoadData();
+            //You can create a configuration that sets this environment variable, this way the database cleanup and all will happen
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "TestWithDBWipe"){
+				DataLoader loader = new DataLoader();
+				loader.LoadData();    
+			}
 			
 
             host.Run();

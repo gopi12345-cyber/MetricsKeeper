@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,6 +6,7 @@ using Core.Data;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 using Core.Context;
+using System.Threading.Tasks;
 
 namespace Core.Repository
 {
@@ -18,29 +19,29 @@ namespace Core.Repository
     
     public EntityBaseRepository(CoreContext context)
     {
-        _context = context;
+            _context = context;
     }
     
-    public virtual IEnumerable<T> GetAll()
+    public virtual async Task<IEnumerable<T>> GetAll()
     {
-        return _context.Set<T>().AsEnumerable();
+            return await Task.FromResult(_context.Set<T>().AsEnumerable());
     }
 
  
-    public virtual int Count()
+    public virtual async Task<int> Count()
     {
-        return _context.Set<T>().Count();
+        return await _context.Set<T>().CountAsync();
     }
 
 
-    public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
+    public virtual async Task<IEnumerable<T>> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
     {
         IQueryable<T> query = _context.Set<T>();
         foreach (var includeProperty in includeProperties)
         {
                 query = query.Include(includeProperty);
         }
-        return query.AsEnumerable();
+        return await Task.FromResult(query.AsEnumerable());
     }
  
     public T GetSingle(int id)

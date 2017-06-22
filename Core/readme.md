@@ -40,3 +40,6 @@ This should get you running.
  - TBD GET /api/entity/?withdeleted=true - will return all data, including deleted/not active
  - TBD GET /api/entity?page=n - will return a page
 
+ # Todo:
+
+ - Add Serilog

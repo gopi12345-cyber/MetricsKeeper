@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Core.Data;
 using Core.Repository;
 using Newtonsoft.Json.Serialization;
+using System.Threading.Tasks;
+using Core.Tools;
+using Microsoft.Extensions.Logging;
 
 namespace Core.Controllers
 {
@@ -12,21 +15,24 @@ namespace Core.Controllers
     public class OrgController : Controller
     {
         private IOrgRepository _OrgRepo;
+
         public OrgController(IOrgRepository orgrepo)
         {
             _OrgRepo = orgrepo;
+
+                  
         }
 
-
         [HttpGet]
-        public IEnumerable<Org> Get([FromQuery]bool expand = false)
+        public async Task<IEnumerable<Org>> Get([FromQuery]bool expand = false)
         {
             if (expand == true)
             {
-                return _OrgRepo.AllIncluding(a => a.Portfolios);
+                return await _OrgRepo.AllIncluding(a => a.Portfolios);
+
             }
             else{
-                return _OrgRepo.GetAll();
+                return await _OrgRepo.GetAll();
             }
         }
 
@@ -70,6 +76,12 @@ namespace Core.Controllers
             else{
                 return new ObjectResult(item);
             }
+        }
+
+        [Route("count")]
+        [HttpGet]
+        public async Task<int> Count(){
+            return await _OrgRepo.Count();
         }
 
         [HttpDelete("{id}")]

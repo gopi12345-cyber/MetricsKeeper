@@ -11,7 +11,7 @@
       <Variable name="ASPNETCORE_ENVIRONMENT" value="TestWithDBWipe" />
     </EnvironmentVariables>
     <LaunchUrl></LaunchUrl>
-    <ApplicationURL>http://localhost:53365</ApplicationURL>
+    <ApplicationURL>http://localhost:8800</ApplicationURL>
     <LaunchBrowser>false</LaunchBrowser>
   </PropertyGroup>
   <ItemGroup>
@@ -46,6 +46,9 @@
 <ItemGroup>
  
   <Content Include="Test\TestData.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+    <Content Include="appsettings.json">
     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </Content>
 </ItemGroup>

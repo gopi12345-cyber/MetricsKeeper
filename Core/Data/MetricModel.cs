@@ -10,6 +10,10 @@ namespace Core.Data
 {
 	public enum ModelType
 	{
+        [Display(Name="Any String")]
+        [DisplayName("any string dn")]
+        String,
+
         [Display(Name="Positive integer value: 0, 15, 500...")]
         PositiveInteger,
 		
@@ -51,6 +55,9 @@ namespace Core.Data
             Type = type;
 
             switch(type){
+                case ModelType.String:
+                    ValueType = typeof(string);
+                    break;
                 case ModelType.PositiveInteger:
                     ValueType = typeof(int);
                     MinValue = 0;
@@ -69,8 +76,11 @@ namespace Core.Data
             }
         }
 
+        //todo: return validationResult instead with an error message
         public bool IsValid(string value){
             switch(Type){
+                case ModelType.String:
+                    return true;
                 case ModelType.Percentage:
                     int result;
                     if (

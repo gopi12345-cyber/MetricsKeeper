@@ -15,12 +15,14 @@ namespace Core.Test
     {
         CoreContext _cont;
         public readonly ILogger _logger;
-        public DataLoader(bool CleanDB = false)
+        public DataLoader(bool CleanDB = true)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CoreContext>();
             optionsBuilder.UseMySql(new ConfigurationReader().Configuration["Data:MySQLDBConnectionString"]);
             _cont = new CoreContext(optionsBuilder.Options);
-            WipeDBRecords();
+            if (CleanDB == true){
+                WipeDBRecords();
+            }
 
         }
 
@@ -49,7 +51,6 @@ namespace Core.Test
                         _cont.SaveChanges();
                     }
                 }
-                  
             }
 
         }

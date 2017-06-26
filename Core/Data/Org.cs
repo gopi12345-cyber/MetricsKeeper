@@ -6,5 +6,10 @@ namespace Core.Data
     {
         public string Name { get; set; }
         public List<Portfolio> Portfolios { get; set; }
+        public string MetricDatabaseName {
+            get{
+                return String.Format("org{0}", this.Id);
+            }
+        }
     }
 }

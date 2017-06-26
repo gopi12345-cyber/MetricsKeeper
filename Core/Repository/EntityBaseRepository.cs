@@ -15,6 +15,7 @@ namespace Core.Repository
 {
  
     protected CoreContext _context;
+        public string x = "s";
  
     
     public EntityBaseRepository(CoreContext context)

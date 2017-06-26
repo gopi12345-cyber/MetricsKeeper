@@ -54,8 +54,6 @@ namespace Core
             loggerFactory.AddDebug();
             app.UseMiddleware<Core.Tools.ErrorHandlingMiddleware>();
             app.UseMvc();
-
-
         }
     }
 }

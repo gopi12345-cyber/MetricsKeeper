@@ -23,5 +23,22 @@ namespace Core.Data
                 return new MetricModel(Type);
             }
         }
+        public string MetricDatabaseName {
+            get{
+                try
+                {
+                    return this.Project.Portfolio.Organization.MetricDatabaseName;
+                }
+                catch{
+                    return null;
+                }
+            }
+        }
+
+        public string MetricMeasurementName{
+            get{
+                return String.Format("metric{0}",this.Id);
+            }
+        }
     }
 }

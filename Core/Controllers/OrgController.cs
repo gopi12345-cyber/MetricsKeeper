@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using System.Threading.Tasks;
 using Core.Tools;
 using Microsoft.Extensions.Logging;
+using AdysTech.InfluxDB.Client.Net;
 
 namespace Core.Controllers
 {
@@ -37,13 +38,25 @@ namespace Core.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]Org org)
+        public async Task<IActionResult> Create([FromBody]Org org)
         {
             if (ModelState.IsValid)
             {
                 _OrgRepo.Add(org);
                 _OrgRepo.Commit();
-                return new OkObjectResult(org);
+                ConfigurationReader conf = new ConfigurationReader();
+				using (InfluxDBClient _influxClient = new InfluxDBClient(conf.Configuration["Data:InfluxDBHost"],
+										 conf.Configuration["Data:InfluxDBLogin"],
+                                                           conf.Configuration["Data:InfluxDBPassword"])){
+                    if (await _influxClient.CreateDatabaseAsync("org"+org.Id.ToString()) == true){
+						return new OkObjectResult(org);
+                    }
+                    else{
+                        _OrgRepo.Delete(org);
+                        _OrgRepo.Commit();
+                        return new ObjectResult("Could not geneate metrics storage database, the organization was not created!");
+                    }
+                }
             }
             else
             {

@@ -36,4 +36,4 @@ It is at early stages of development, I encourage you to contribute if you are i
  - (Core) Change objects retrieval returns from IEnumerable to IQueryable
  - (Core) Paging for large lists & Nested paging
  - Authentication and Org-based Authorization
- - Generate documentation with Swagger https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger
+ - Generate documentation with Swagger https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger# dotnet
